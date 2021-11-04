@@ -5,7 +5,9 @@
 
 <!-- badges: start -->
 
-[![codecov](https://codecov.io/gh/osthomas/ggtikz/branch/main/graph/badge.svg?token=0LPNGPFO5Z)](https://codecov.io/gh/osthomas/ggtikz)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/ggtikz)](https://CRAN.R-project.org/package=ggtikz)
+[![codecov](https://codecov.io/gh/osthomas/ggtikz/branch/main/graph/badge.svg?token=0LPNGPFO5Z)](https://app.codecov.io/gh/osthomas/ggtikz)
 [![R-CMD-check](https://github.com/osthomas/ggtikz/workflows/R-CMD-check/badge.svg)](https://github.com/osthomas/ggtikz/actions)
 <!-- badges: end -->
 
@@ -20,15 +22,27 @@ Plots with multiple panels (via `facet_grid()` or `facet_wrap()`) are
 supported.
 
 For a few examples, see the [examples
-vignette](https://github.com/osthomas/ggtikz/blob/main/doc/examples.pdf).
+vignette](https://github.com/osthomas/ggtikz/blob/devel/doc/examples.pdf).
 
 ## Installation
 
-You can install ggtikz from github with:
+You can install the latest ggtikz release from CRAN with:
 
 ``` r
-devtools::install_github("osthomas/ggtikz")
+install.packages("ggtikz")
 ```
+
+Or get the development version from GitHub:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("osthomas/ggtikz", ref = "devel")
+```
+
+<!-- ## New in Devel
+[![codecov (devel)](https://codecov.io/gh/osthomas/ggtikz/branch/devel/graph/badge.svg?token=0LPNGPFO5Z)](https://codecov.io/gh/osthomas/ggtikz)
+[![R-CMD-check (devel)](https://github.com/osthomas/ggtikz/workflows/R-CMD-check/badge.svg?branch=devel)](https://github.com/osthomas/ggtikz/actions)
+ -->
 
 ## Basic Usage
 
@@ -43,7 +57,7 @@ p <- ggplot(mtcars, aes(disp, mpg)) + geom_point() # 1.
 ## tikz("plot.tikz")
 ggtikz(p,
     "\\fill[red] (0.5,0.5) circle (5mm);",
-    xy = "plot")
+    xy = "panel", panelx = 1, panely = 1)
 ## dev.off()
 ## Render with LaTeX ...
 ```

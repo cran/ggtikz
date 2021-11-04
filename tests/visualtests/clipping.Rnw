@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\begin{document}
+
+<<setup>>=
+devtools::load_all("../..")
+library(knitr)
+library(ggplot2)
+opts_chunk$set(
+    dev = "tikz",
+    error = TRUE,
+    echo = FALSE,
+    cache = FALSE,
+    external = FALSE,
+    fig.path = "visualtests-knitr/",
+    fig.width = 3,
+    fig.height = 3,
+    fig.align = "center"
+)
+set_ggtikz_unclip_hook()
+@
+
+
+<<clippingvisualtest, external=FALSE, unclip=TRUE>>=
+p <- ggplot(mtcars, aes(mpg, disp)) + geom_point() +
+        facet_wrap(~cyl) +
+        theme(plot.background=element_blank())
+canvas <- ggtikzCanvas(p) +
+    ggtikzAnnotation(
+        "
+        \\node at (0.5, -0.45) {clipped};
+        ", xy="panel", panelx=1, panely=1, clip="off"
+)  + ggtikzAnnotation(
+        "
+        \\node at (0.5, -0.45) {unclipped};
+        ", xy="panel", panelx=2, panely=1, clip="on"
+)
+p
+canvas
+@
+
+\end{document}

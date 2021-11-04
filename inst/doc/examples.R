@@ -4,6 +4,8 @@ library(ggplot2)
 library(ggtikz)
 opts_chunk$set(
     dev = "tikz",
+    error = TRUE,
+    cache = FALSE,
     external = TRUE,
     fig.path = "example-vignette-figures/",
     fig.width = 3,
@@ -16,7 +18,9 @@ p <- ggplot(mtcars, aes(disp, mpg)) + geom_point()
 ggtikz(p, "\\fill[red] (0.5,0.5) circle (2mm);", xy="plot")
 
 ## ----single-panel-setup-------------------------------------------------------
-p <- ggplot(mtcars, aes(disp, mpg)) + geom_point()
+p <- ggplot(mtcars, aes(disp, mpg)) +
+    geom_point() +
+    theme(plot.background=element_rect(color = "black", size = 1))
 
 ## ----single-panel-relative-plot-----------------------------------------------
 canvas <- ggtikzCanvas(p)
@@ -50,7 +54,8 @@ canvas <- ggtikzCanvas(p)
 annotation <- ggtikzAnnotation(
     "
     \\draw[thick,red] (100,20) -| (400,15);
-    \\draw[<-] (153,24) -- ++(30:1cm) node[at end, anchor=south] {Interesting!};
+    \\draw[<-] (153,24) -- ++(30:1cm) node[at end, anchor=south]
+        {Interesting!};
     ",
     xy = "data",
     panelx = 1, panely = 1
@@ -95,6 +100,17 @@ canvas + annotation_clip + annotation_unclip + annotation_unclip2
 ## ----single-panel-clipping2---------------------------------------------------
 p + theme(plot.margin = margin(t=0.5, b = 1, unit = "cm"))
 canvas + annotation_clip + annotation_unclip + annotation_unclip2
+
+## ----set-unclip-hook----------------------------------------------------------
+set_ggtikz_unclip_hook()
+
+## ----single-panel-clipping3, external=FALSE, unclip=TRUE----------------------
+# chunk options: external=FALSE, unclip=TRUE
+p
+canvas + annotation_unclip2
+
+## ----unset-unclip-hook--------------------------------------------------------
+unset_ggtikz_unclip_hook()
 
 ## ----wrap-setup---------------------------------------------------------------
 p_wrap <- p + facet_wrap(~cyl, scales="free", ncol=2)
@@ -162,7 +178,7 @@ annotation2 <- ggtikzAnnotation(
     panelx = 2, panely = 1
 )
 p_wrap
-canvas + annotation1
+canvas + annotation1 + annotation2
 
 ## ----grid-setup---------------------------------------------------------------
 p_grid <- p + facet_grid(gear~cyl, scales="free", as.table=FALSE)
@@ -204,6 +220,56 @@ p
 
 canvas <- ggtikzCanvas(p)
 canvas + annot_grid2
+
+## ----logplot------------------------------------------------------------------
+p_log <- ggplot(mtcars, aes(mpg, disp)) +
+    geom_point() +
+    scale_x_continuous(trans="log10")
+
+## ----logplot-transform--------------------------------------------------------
+canvas_log <- ggtikzCanvas(p_log)
+# Untransformed coordinates: wrong position
+annot_log <- ggtikzAnnotation(
+    "\\fill[red] (1,100) circle (2mm);
+    \\node[anchor=west, text=red] at (1, 100)
+        {The circle is not at (1,100)!};
+    ", xy = "data", transform = FALSE, panelx = 1, panely = 1
+)
+
+# Transformed coordinates: correct position
+# The literal coordinate in the node text was wrapped in an \mbox
+# LaTeX command to prevent automatic transformation -- it can't
+# distinguish between coordinates which are supposed to be text,
+# and actual coorinates.
+annot_log2 <- ggtikzAnnotation(
+    "\\fill[blue] (20,200) circle (2mm);
+    \\node[anchor=south, text=blue] at (20, 200)
+        {This circle is at (\\mbox{20,200})!};
+    ", xy = "data", transform = TRUE, panelx = 1, panely = 1
+)
+
+# Untransformed coordinates, calculated manually by hand:
+# correct position
+annot_log3 <- ggtikzAnnotation(
+    "\\fill[magenta] (1.477,400) circle (2mm);
+    \\node[anchor=east, text=magenta] at (1.477, 400)
+        {This circle is at (30,400)!};
+    ", xy = "data", transform = FALSE, panelx = 1, panely = 1
+)
+p_log
+canvas_log + annot_log + annot_log2 + annot_log3
+
+## ----inf-replace--------------------------------------------------------------
+p_log_border <- p_log +
+    theme(panel.border = element_rect(fill=NA, size = 2))
+canvas_log_border <- ggtikzCanvas(p_log_border)
+annot_inf <- ggtikzAnnotation(
+    "\\draw[red, thick] (-Inf,200) -| (20,-Inf);
+    \\draw[green, thick] (-Inf,200) |- (20,-Inf);
+    ", xy = "data", replace_inf = TRUE, panelx = 1, panely = 1
+)
+p_log_border
+canvas_log_border + annot_inf
 
 ## ----using-styles-------------------------------------------------------------
 p
