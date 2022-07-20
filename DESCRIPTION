@@ -1,7 +1,7 @@
 Package: ggtikz
 Title: Post-Process 'ggplot2' Plots with 'TikZ' Code Using Plot
         Coordinates
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person(given = "Oliver",
            family = "Thomas",
@@ -12,14 +12,14 @@ License: MIT + file LICENSE
 URL: https://github.com/osthomas/ggtikz
 BugReports: https://github.com/osthomas/ggtikz/issues
 Encoding: UTF-8
-RoxygenNote: 7.1.1
-Imports: dplyr, grid, ggplot2, tikzDevice
-Suggests: stringr, rmarkdown, knitr, testthat (>= 3.0.0), covr, magick
+RoxygenNote: 7.2.1
+Imports: dplyr, ggplot2, grid, stringr, tikzDevice
+Suggests: covr, knitr, magick, rmarkdown, testthat (>= 3.0.0), tinytex
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2021-11-04 19:05:30 UTC; oliver
+Packaged: 2022-07-20 20:03:08 UTC; thomaso
 Author: Oliver Thomas [aut, cre]
 Maintainer: Oliver Thomas <oliver.thomas@sgbm.uni-freiburg.de>
 Repository: CRAN
-Date/Publication: 2021-11-04 19:30:02 UTC
+Date/Publication: 2022-07-20 20:20:02 UTC
