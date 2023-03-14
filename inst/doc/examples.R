@@ -20,7 +20,7 @@ ggtikz(p, "\\fill[red] (0.5,0.5) circle (2mm);", xy="plot")
 ## ----single-panel-setup-------------------------------------------------------
 p <- ggplot(mtcars, aes(disp, mpg)) +
     geom_point() +
-    theme(plot.background=element_rect(color = "black", size = 1))
+    theme(plot.background=element_rect(color = "black", linewidth = 1))
 
 ## ----single-panel-relative-plot-----------------------------------------------
 canvas <- ggtikzCanvas(p)
@@ -261,7 +261,7 @@ canvas_log + annot_log + annot_log2 + annot_log3
 
 ## ----inf-replace--------------------------------------------------------------
 p_log_border <- p_log +
-    theme(panel.border = element_rect(fill=NA, size = 2))
+    theme(panel.border = element_rect(fill = NA, linewidth = 2))
 canvas_log_border <- ggtikzCanvas(p_log_border)
 annot_inf <- ggtikzAnnotation(
     "\\draw[red, thick] (-Inf,200) -| (20,-Inf);
