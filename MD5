@@ -1,7 +1,7 @@
-1198bd663e5f0ac8e34768215867801b *DESCRIPTION
+c24509d41f18c5f2ff53340a38320c37 *DESCRIPTION
 9e805da72415fea9ac615eaa0f700789 *LICENSE
 44b191c9f38ea21fd284630814647932 *NAMESPACE
-c67f5fe56a09599350832d221c6c72c7 *NEWS.md
+fc30e09f11d0d2efee01867790205835 *NEWS.md
 48066cfddba5925d8281d5ce1a63af77 *R/coord_utils.R
 140b9066c8ce138a74cab3cec378f739 *R/generics.R
 d6468106ab69b056409722782edc723d *R/ggtikz.R
@@ -9,13 +9,13 @@ d6468106ab69b056409722782edc723d *R/ggtikz.R
 55eb1f384248e8a2e38004c8fdb31a6f *R/ggtikzCanvas.R
 89d3bd2bd55197e706e894da0710cac2 *R/ggtikzTransform.R
 9efa6ac06107466ce9ac4b5b4199a328 *R/ggtikzUninfinite.R
-e74a8e523be50b6356deaa59493b21b1 *R/padding.R
+6f3597a5bd107ad6e6ecdbaf5c840bc7 *R/padding.R
 09f2a1321d8852290ed2b2f157fe0693 *R/unclip.R
 3021e5a8aff283a6abdeb0145bfca6d0 *README.md
-7b8545d811eb773831179371eb3f00bc *build/vignette.rds
+96a6a458dbbdde80bbc723aad3325cca *build/vignette.rds
 0dd83cb80cb7ebca05d40e7537601765 *inst/doc/examples.R
 b73056348f1f5201b2e21ad58ed68ae0 *inst/doc/examples.Rnw
-32efcf8c23357b3fdd66f3764428b3d0 *inst/doc/examples.pdf
+baf3b192257cb712277e4c85e6461efb *inst/doc/examples.pdf
 6130c0b8ccfc9c83c19bea977c3abbc5 *inst/testdata/plot_clipped.tex
 5b8bb6f304e1fe872a2b5afc5aa91541 *inst/testdata/plot_unclipped.tex
 51983a55b65fa7270509a50dabf2e16f *man/discretize.Rd
@@ -39,7 +39,7 @@ eeac02db87981adaa998fbebd3fda7b5 *tests/testthat/helpers.R
 4afb88330a6e32ec25c4722075826730 *tests/testthat/test-coord_utils.R
 623b1e0dbb9cbd61d92e04927bed9edd *tests/testthat/test-ggtikz.R
 704a80eb97a7308e40d851266e281e6f *tests/testthat/test-ggtikzAnnotation.R
-10ad65e516dda8fae62d7db4a6b2b8be *tests/testthat/test-ggtikzCanvas.R
+f591d3b5e091c9fdbd380611715b1954 *tests/testthat/test-ggtikzCanvas.R
 0eedc1342cd95fd2d55dd384d1360fd2 *tests/testthat/test-ggtikzTransform.R
 e4695b5195e054ce283760849847f914 *tests/testthat/test-ggtikzUninfinite.R
 0b781832bee1fa86800ac44e541b0989 *tests/testthat/test-padding.R
